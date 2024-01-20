@@ -7,9 +7,8 @@ public class CatalogMerger : ICatalogMerger
 {
     public List<Product> MergeCatalogs(List<Product> catalogA, List<Product> catalogB)
     {
-        // Create sets of barcodes for each company
+        // Create sets of barcodes for company A
         var barcodesA = new HashSet<string>(catalogA.SelectMany(p => p.Barcodes));
-        var barcodesB = new HashSet<string>(catalogB.SelectMany(p => p.Barcodes));
 
         var mergedCatalog = catalogA.ToList();
 
