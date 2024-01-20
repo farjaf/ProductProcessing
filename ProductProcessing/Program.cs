@@ -22,18 +22,17 @@ return;
 
 void RunApplicationAsync(IServiceProvider serviceProvider)
 {
-    var barcodeLoader = serviceProvider.GetRequiredService<IDataLoader>();
-    //var catalogLoader = serviceProvider.GetRequiredService<ICatalogLoader>();
+    var dataLoader = serviceProvider.GetRequiredService<IDataLoader>();
     var catalogMerger = serviceProvider.GetRequiredService<ICatalogMerger>();
     var csvExporter = serviceProvider.GetRequiredService<ICsvExporter>();
 
-    var barcodesA = barcodeLoader.LoadBarcodes("Input/barcodesA.csv");
-    var barcodesB = barcodeLoader.LoadBarcodes("Input/barcodesB.csv");
-    var catalogA = barcodeLoader.LoadCatalog("Input/catalogA.csv", "A", barcodesA);
-    var catalogB = barcodeLoader.LoadCatalog("Input/catalogB.csv", "B", barcodesB);
+    var barcodesA = dataLoader.LoadBarcodes("Input/barcodesA.csv");
+    var barcodesB = dataLoader.LoadBarcodes("Input/barcodesB.csv");
+    var catalogA = dataLoader.LoadCatalog("Input/catalogA.csv", "A", barcodesA);
+    var catalogB = dataLoader.LoadCatalog("Input/catalogB.csv", "B", barcodesB);
 
     var mergedCatalog = catalogMerger.MergeCatalogs(catalogA, catalogB);
-    csvExporter.ExportToCsv(mergedCatalog, "Output/result.csv");
+    csvExporter.ExportToCsv(mergedCatalog, "Output/result_output.csv");
 }
 
 //var barcodesA = LoadBarcodes("Input/barcodesA.csv");
