@@ -15,7 +15,7 @@ public class CsvExporter(IFileSystem fileSystem) : ICsvExporter
         // Ensure the directory exists
         if (!fileSystem.Directory.Exists(directory))
         {
-            fileSystem.Directory.CreateDirectory(directory);
+            fileSystem.Directory.CreateDirectory(directory ?? "Output");
         }
 
         using var writer = fileSystem.File.CreateText(filePath);
